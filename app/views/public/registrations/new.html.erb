@@ -9,17 +9,17 @@
 
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h7>名前</h7>
+          <label class="mb-0">名前</label>
         </div>
         <div class="col-4 text-right">
           <div class="field">
-            <%= f.label :last_name, "(姓)" %>
+            <%= f.label :last_name, "(姓)", class: "mb-0" %>
             <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "令和", size: 25 %>
           </div>
         </div>
         <div class="col-4 text-right">
           <div class="field">
-            <%= f.label :first_name, "(名)" %>
+            <%= f.label :first_name, "(名)", class: "mb-0" %>
             <%= f.text_field :first_name, autocomplete: "first_name", placeholder: "道子", size: 25 %>
           </div>
         </div>
@@ -27,17 +27,17 @@
 
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h7>フリガナ</h7>
+          <label class="mb-0">フリガナ</label>
         </div>
         <div class="col-4 text-right">
           <div class="field">
-            <%= f.label :last_kana_name, "(セイ)" %>
+            <%= f.label :last_kana_name, "(セイ)", class: "mb-0" %>
             <%= f.text_field :last_kana_name, autocomplete: "last_kana_name", placeholder: "レイワ", size: 25 %>
           </div>
         </div>
         <div class="col-4 text-right">
           <div class="field">
-            <%= f.label :first_kana_name, "(メイ)" %>
+            <%= f.label :first_kana_name, "(メイ)", class: "mb-0" %>
             <%= f.text_field :first_kana_name, autocomplete: "first_kana_name", placeholder: "ミチコ", size: 25 %>
           </div>
         </div>
@@ -45,7 +45,7 @@
 
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h7>メールアドレス</h7>
+          <%= f.label :email, "メールアドレス", class: "mb-0", style: "white-space: nowrap;" %>
         </div>
         <div class="col-4 text-right">
           <div class="field">
@@ -56,7 +56,7 @@
 
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h6 style="white-space: nowrap;">郵便番号(ハイフンなし)</h6>
+          <%= f.label :zip_code, "郵便番号(ハイフンなし)", class: "mb-0", style: "white-space: nowrap;" %>
         </div>
         <div class="col-4 text-right">
           <div class="field">
@@ -67,10 +67,10 @@
 
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h6>住所</h6>
+          <%= f.label :address, "住所", class: "mb-0", style: "white-space: nowrap;" %>
         </div>
-        <div class="col-8 text-right">
-          <div class="field">
+        <div class="col-8">
+          <div class="field text-right">
             <%= f.text_field :address, autocomplete: "address", placeholder: "東京都渋谷区代々木神園町0-0", size: 70 %>
           </div>
         </div>
@@ -78,7 +78,7 @@
 
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h6>電話番号</h6>
+          <%= f.label :phone_number, "電話番号", class: "mb-0", style: "white-space: nowrap;" %>
         </div>
         <div class="col-4 text-right">
           <div class="field">
@@ -86,10 +86,10 @@
           </div>
         </div>
       </div>
-      
+
       <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h6 style="white-space: nowrap;">パスワード(6文字以上)</h6>
+          <%= f.label :password, "パスワード(6文字以上)", class: "mb-0", style: "white-space: nowrap;" %>
         </div>
         <div class="col-4 text-right">
           <div class="field">
@@ -97,10 +97,10 @@
           </div>
         </div>
       </div>
-      
+
        <div class="row align-items-center mb-2">
         <div class="col-2">
-          <h6 style="white-space: nowrap;">パスワード(確認用)</h6>
+          <%= f.label :password_confirmation, "パスワード(確認用)", class: "mb-0", style: "white-space: nowrap;" %>
         </div>
         <div class="col-4 text-right">
           <div class="field">
@@ -108,13 +108,13 @@
           </div>
         </div>
       </div>
-      
+
       <div class="actions">
-        <%= f.submit "新規登録" %>
+        <%= f.submit "新規登録", class: "btn btn-success" %>
       </div>
-      
+
       <% end %>
-      
+
       <div class="row">
         <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <h5 class="d-inline-flex bg-light px-4 my-4 ml-4">既に登録済みの方</h5>
