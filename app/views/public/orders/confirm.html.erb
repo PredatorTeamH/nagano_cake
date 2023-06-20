@@ -1,0 +1,51 @@
+<div class="row">
+  <h3 class="ml-5 mini-title">注文情報確認</h3>
+</div>
+
+<div class="row col-11 mx-5">
+  <div class="col-7">
+  <table class="table mx-5 table-bordered table-background">
+    <thead class="thead-light">
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    
+      </tbody>
+  </table>
+  </div>
+
+  <div class="col-4 offset-1">
+  <table class="table table-bordered">
+    <tr class="table-background">
+      <td style="width: 50%" class="table-active">送料</td>
+      <td style="width: 50%">800</td>
+    </tr>
+    <tr class="table-background">
+      <td style="width: 50%" class="table-active">商品合計</td>
+    </tr>
+    <tr class="table-background">
+      <td style="width: 50%" class="table-active">請求金額</td>
+    </tr>
+  </table>
+</div>
+</div>
+
+<div class="offset-1">
+  <div class="pl-4 pt-5 d-flex">
+    <h5 class="mr-3"><b>支払方法</b></h5><span><%= @order.payment_method_i18n %></span>
+  </div>
+  
+  <div class="pl-4 my-3 d-flex">
+    <h5 class="mr-3"><b>お届け先</b></h5><span><%= "〒" + @order.zip_code + @order.address %><br><%= @order.name %></span>
+  </div>
+</div>
+
+ <div class="row">
+    <%= f.submit "注文を確定する" %>
+  </div>
+
+<% end %>
