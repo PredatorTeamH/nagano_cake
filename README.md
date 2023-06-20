@@ -11,4 +11,7 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 - Rails 6.1.7.3
 
 ## 作成者
-[![GitHub](https://img.shields.io/badge/Created%20by-yusukeee811-blue?logo=github)](https://github.com/yusukeee811)
+[![GitHub](https://img.shields.io/badge/Created%20by-%E3%82%86%E3%81%86-blue?logo=github)](https://github.com/yusukeee811)
+[![GitHub](https://img.shields.io/badge/Created%20by-%E3%81%93%E3%81%B0%E3%81%95%E3%82%93-yellow?logo=github)](https://github.com/yuta-kobayashi-dev)
+[![GitHub](https://img.shields.io/badge/Created%20by-%E3%81%93%E3%81%B0%E3%81%95%E3%82%93-red?logo=github)](https://github.com/sato0w0)
+[![GitHub](https://img.shields.io/badge/Created%20by-%E3%81%93%E3%81%B0%E3%81%95%E3%82%93-yellow?logo=github)]
