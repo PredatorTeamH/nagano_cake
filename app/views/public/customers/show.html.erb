@@ -1,0 +1,68 @@
+<h2>マイページ</h2>
+<div class='row'>
+  <h2>登録情報</h2>
+  <%= link_to '編集する', edit_customer(customer.id), class: "btn btn-sm btn-success" %>
+</div>
+<table class='table'>
+  <tbody>
+    <tr>
+      <td>
+        氏名
+      </td>
+      <td>
+        <%= customer.last_name customer.first_name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        カナ
+      </td>
+      <td>
+        <%= customer.last_kana_name customer.first_kana_name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        郵便番号
+      </td>
+      <td>
+        <%= customer.zip_code %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        住所
+      </td>
+      <td>
+        <%= customer.address %>
+      </td>
+    </tr>
+     <tr>
+      <td>
+        電話番号
+      </td>
+      <td>
+        <%= customer.phone_number %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        メールアドレス
+      </td>
+      <td>
+        <%= customer.email %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="table">
+<h2><strong>配送先</strong></h2>
+<!--配送先一覧にリンク-->
+<%= link_to "一覧を見る", shipping_addresses_path, class:"btn btn-primary btn-sm btn-block mb-3" %>
+</div>
+<div class="table">
+<h2><strong>注文履歴</strong></h2>
+<!--注文履歴一覧にリンク-->
+<%= link_to "一覧を見る", orders_path, class:"btn btn-primary btn-sm btn-block mb-3" %>
+</div>
