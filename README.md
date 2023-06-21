@@ -1,4 +1,7 @@
-# <img src="app/assets/images/logo.png" alt="プロジェクトのロゴ" width="100" height="100">
+# 
+<p align="center">
+<img src="app/assets/images/logo.png" alt="プロジェクトのロゴ" width="200" height="200">
+</p>
 
 ### 概要
 長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト開発。<br>
