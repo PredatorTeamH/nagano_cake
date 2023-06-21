@@ -1,0 +1,11 @@
+<tr>
+      <td>会員ステータス</td>
+      <td>
+        <%= f.label :is_active, "有効",  {value: :true, style: "display: inline-block;"} %> 
+        <%= f.radio_button :is_active, :active %>
+      </td>
+      <td>
+        <%= f.label :is_active, "退会",  {value: :fales, style: "display: inline-block;"} %> 
+        <%= f.radio_button :is_active, :not_active %> 
+      </td>
+    </tr>
