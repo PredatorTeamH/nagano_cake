@@ -2,16 +2,18 @@ class Public::CustomersController < ApplicationController
   
   def show
     # 顧客マイページを表示
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
   
   def edit
     # 顧客情報編集ページを表示
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
   
   def update
+    @customer = current_customer
     if @customer.update(customer_params)
+      flash[:success] = "会員情報を更新しました。"
       redirect_to customer_path(current_customer)
     else
       render "edit"
@@ -20,13 +22,13 @@ class Public::CustomersController < ApplicationController
   
   def unsubscribe
     # 顧客を特定する処理
-    @customer = Cutomer.find(params[:id])
+    @customer = current_customer
     # 退会確認画面を表示するための処理
     render "unsubscibe"
   end
   
   def withdraw
-    @customer = Cutomer.find(params[:id])
+    @customer = current_customer
     if @customer.update(status: 'not_active')
       # 退会が成功した場合の処理
       # 例えば、成功メッセージを表示したり、リダイレクトしたりする
