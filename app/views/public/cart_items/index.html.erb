@@ -1,0 +1,64 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <% unless @cart_items.present? %>
+        <h4>ショッピングカート</h4>
+        <p>カートが空です</p>
+      <% else %>
+        <div class="d-flex align-items-center justify-content-between">
+          <h4>ショッピングカート</h4>
+          <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger text-nowrap" %>
+        </div>
+        <div class="row">
+          <table class="table table-bordered bg-light">
+            <thead>
+              <tr>
+                <th class="align-middle">商品名</th>
+                <th class="align-middle">単価(税込)</th>
+                <th class="align-middle">数量</th>
+                <th class="align-middle">小計</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cart_items.each do |cart_item| %>
+                <tr>
+                  <td class="align-middle">
+                    <%= image_tag cart_item.item.get_image(50, 40) %>
+                    <%= cart_item.item.name %>
+                  </td>
+                  <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+                  <td class="align-middle mx-auto">
+                    <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                      <%= f.select :amount, *[1..10] %>
+                      <%= f.submit "変更", class: "btn btn-sm btn-success" %>
+                    <% end %>
+                  </td>
+                  <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %></td>
+                  <% @total_payment += cart_item.subtotal %>
+                  <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger text-nowrap" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <%= link_to "買い物を続ける", root_path, class: "btn btn-primary text-nowrap" %>
+          <div class="col-sm-4">
+            <table class="table table-bordered bg-light">
+              <tbody>
+                <tr>
+                  <td class="align-middle">合計金額</td>
+                  <td class="align-middle"><%= @total_payment.to_s(:delimited) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row mt-5 justify-content-center">
+          <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
