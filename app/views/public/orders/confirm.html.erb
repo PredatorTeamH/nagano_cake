@@ -40,12 +40,12 @@
   </div>
   
   <div class="pl-4 my-3 d-flex">
-    <h5 class="mr-3"><b>お届け先</b></h5><span><%= "〒" + @order.zip_code + @order.address %><br><%= @order.name %></span>
+   <span><%= "〒" + @order.shipping_zip_code + @order.shipping_address %><br><%= @order.address_name %></span>
   </div>
 </div>
+<div class="d-flex justify-content-center">
+   <%= form_with model: @order, url: orders_complete_path, method: :post do |form| %>
+    <%= form.submit "注文を確定する", class: "btn btn-primary" %>
+  <% end %>
+</div>
 
- <div class="row">
-    <%= f.submit "注文を確定する" %>
-  </div>
-
-<% end %>
