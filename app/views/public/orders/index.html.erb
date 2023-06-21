@@ -13,9 +13,21 @@
         <th style="width: 10%">注文詳細</th>
       </tr>
     </thead>
-      <tbody>
-        <td>
-        <div class="d-flex justify-content-center">
-        <%= link_to '表示する' %>
-        </div>
-        </td>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+        <td><%= order.id %></td>
+        <td><%= order.payment_method %></td>
+        <td><%= order.shipping_address %></td>
+        <td><%= order.shipping_zip_code %></td>
+        <td><%= order.address_name %></td>
+          <td>
+            <div class="d-flex justify-content-center">
+              <%= link_to '表示する', order_path(order) %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

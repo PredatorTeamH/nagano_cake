@@ -4,7 +4,12 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :items, through: :order_items
   
-  enum payment_methods: {クレジットカード: 0, 銀行振り込み: 1, 代引き: 2}
+  validates :payment_method, presence: true
+  validates :shipping_zip_code, presence: true
+  validates :shipping_address, presence: true
+  validates :address_name, presence: true
+  
+  enum payment_method: { credit_card: 0, transfer: 1 }
   enum status: {入金待ち:0, 入金確認:1, 製作中:2, 発送準備中:3, 発送済み:4}
 
 end

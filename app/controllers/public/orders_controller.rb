@@ -1,31 +1,40 @@
 class Public::OrdersController < ApplicationController
-
- def new 
-  @order = Order.new
- end
+  def new 
+    @order = Order.new
+    #@shipping_addresses = current_customer.shipping_addresses
+  end
  
- def confirm
-
- end
+  def confirm
+    puts "Confirm action executed"
+    @order = Order.new(order_params)
+    @order.total_price = 0
+    @order.freight = 800
  
- def complete
- end
+  end
  
- def create
- end
+  def complete
+  end
  
- def index
-  @orders = Order
- end 
+def create
+  @order = Order.new(order_params)
+  if @order.valid?
+    redirect_to action: :confirm
+  else
+    render :new, flash: { error: @order.errors.full_messages }
+  end
+end
  
- def show
-
- end
+  def index
+    @orders = Order.all
+  end 
+ 
+  def show
+    @order = Order.find(params[:id])
+  end
+ 
   private
 
-    def order_params
-      params.require(:order).permit(:payment_method,:zip_code,:address,:name,:freight,:total_peice)
-    end
-
- 
+ def order_params
+  params.require(:order).permit(:payment_method, :shipping_zip_code, :shipping_address, :address_name, :freight, :total_price)
+ end
 end

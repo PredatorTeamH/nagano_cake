@@ -1,0 +1,79 @@
+<<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <h3 class="my-5 mini-title">注文履歴詳細</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <strong>注文情報</strong>
+      <table class="table table-bordered table-background">
+        <tbody>
+          <tr>
+            <td class="table-active">注文日</td>
+            <td><%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+          </tr>
+          <tr>
+            <td class="table-active">配送先</td>
+            <td><%= @order.shipping_address %></td>
+          </tr>
+          <tr>
+            <td class="table-active">支払い方法</td>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <td class="table-active">ステータス</td>
+            <td><%= @order.status %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col">
+      <strong>請求情報</strong>
+      <table class="table table-bordered table-background">
+        <tbody>
+          <tr>
+            <td class="table-active">商品合計</td>
+            <td><%= @order.total_price %>円</td>
+          </tr>
+          <tr>
+            <td class="table-active">送料</td>
+            <td><%= @order.freight %>円</td>
+          </tr>
+          <tr>
+            <td class="table-active"><strong>ご請求額</strong></td>
+            <td><strong><%= @order.total_price + @order.freight %>円</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mt-3">
+      <strong>注文内容</strong>
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-background">
+            <th class="table-active">商品</th>
+            <th class="table-active">単価（税込）</th>
+            <th class="table-active">個数</th>
+            <th class="table-active">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_items.each do |item| %>
+            <tr class="table-background">
+              <td><%= item.product.name %></td>
+              <td><%= item.product.price %>円</td>
+              <td><%= item.quantity %></td>
+              <td><%= item.subtotal %>円</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
