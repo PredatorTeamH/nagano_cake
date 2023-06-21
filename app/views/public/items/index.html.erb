@@ -1,0 +1,10 @@
+<h1>商品一覧</h1>
+<ul class="item-list">
+  <% @items.each do |item| %>
+  <li class="item">
+    <p><%= image_tag item.image, size:'100x100' %></p>
+    <h3><%= item.name %></h3>
+    <p><%= item.description %></p>
+  </li>
+  <% end %>
+</ul>

@@ -1,15 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <h5 class="d-inline-flex bg-light px-4 my-4 ml-4">注文履歴一覧</h5>
     </div>
   </div>
-</div>
 
-<table class="table table-hover">
-  <thead>
-    <th>購入日時<th>
-    <th>
-  </thead>
-  
-</table>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <table class="table table-hover">
+        <thead class="bg-light">
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.customer.name %></td>
+            <td><%= order.quantity %></td>
+            <td><%= order.quantity %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= paginate @paged_orders, previous_label: 'Previous', next_label: 'Next' %>
+</div>

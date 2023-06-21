@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
+
 scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
@@ -23,7 +23,7 @@ scope module: :public do
     post 'orders' => 'orders#confirm', as: 'orders_confirm'
     get 'orders/complete' => 'orders#complete', as: 'orders_complete'
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
-    
+
   end
 
   namespace :admin do
