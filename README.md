@@ -1,4 +1,4 @@
-# 
+# サイト名
 <p align="center">
 <img src="app/assets/images/logo.png" alt="プロジェクトのロゴ" width="200" height="200">
 </p>
