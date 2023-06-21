@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
   def new 
     @order = Order.new
-   session[:selected_customer_id] = current_customer.id
+    #@shipping_addresses = current_customer.shipping_addresses
   end
  
   def confirm
@@ -17,20 +17,8 @@ class Public::OrdersController < ApplicationController
  
 def create
   @order = Order.new(order_params)
-       @order.customer_id = current_customer.id
-    if @order.save
-      @cart_items = current_customer.cart_items
-      @cart_items.each do |cart_item|
-        @order_items = OrderItems.create(order_id: @order.id,
-                                           item_id: cart_item.item_id,
-                                           quantity: cart_item.quantity,
-                                           )
-      end
-      @cart_items.destroy_all
-      redirect_to orders_complete_path
-    else
-      render "confirm"
-    end
+
+    redirect_to action: :confirm
 end
  
   def index
