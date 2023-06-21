@@ -16,7 +16,7 @@
 
         <%= f.radio_button :shipping_address, "select_address" %>
         <%= f.label :select_address, "登録住所からの選択" %>
-   
+ <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display) %>
         <br>
 
         <%= f.radio_button :shipping_address, "new_address" %>
