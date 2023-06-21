@@ -1,7 +1,7 @@
 <!--会員情報編集画面-->
 <h2><strong>会員情報編集</strong></h2>
   <table class="table">
-    <%= form_with_model:@customer do |f| %>
+    <%= form_with model:@customer do |f| %>
     <tr>
       <td>氏名</td>
       <td><%= f.text_field :last_name, class: "form-control name" %></td>
@@ -28,20 +28,11 @@
       <td>メールアドレス</td>
       <td><%= f.text_field :email, class: "form-control name" %></td>
     </tr>
+    <tr>
+      <td><%= f.submit "変更を保存" , class: "btn custom-button" %></td>
+      <td><%= link_to "退会する", customer_unsubscribe_path, class: "btn btn-danger btn-sm btn-block mb-3" %></td>
+    </tr>
     <% end %>
   </table>
-  
-  <table class="table">
-    <tr>
-      <td><h2><strong>配送先</strong></h2></td>
-      <!--配送先一覧にリンク-->
-      <td><%= link_to shipping_addresses_path, class: "btn btn-primary btn-sm btn-block mb-3" %></td>
-    </tr>
-    <tr>
-      <td><h2><strong>注文履歴</strong></h2></td>
-      <!--注文履歴一覧にリンク-->
-      <td><%= link_to orders_path, class: "btn btn-primary btn-sm btn-block mb-3" %></td>
-    </tr>
     
     
-  </div>
