@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create(email: 'admin@example.com', password: 'password')
+
+Item.create(genre_id:1, name: 'Product 1', image: File.open('path/to/image1.jpg'))

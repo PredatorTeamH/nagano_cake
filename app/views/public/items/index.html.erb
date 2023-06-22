@@ -2,9 +2,13 @@
 <ul class="item-list">
   <% @items.each do |item| %>
   <li class="item">
-    <p><%= image_tag item.image, size:'100x100' %></p>
+    <% if item.image.attached? %>
+      <p><%= image_tag item.image, size: '100x100' %></p>
+    <% else %>
+      <p><%= image_tag 'no_image.jpg', size: '100x100' %></p>
+    <% end %>
     <h3><%= item.name %></h3>
     <p><%= item.description %></p>
   </li>
-  <% end %>
+<% end %>
 </ul>
