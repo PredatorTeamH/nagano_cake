@@ -8,4 +8,16 @@
 
 Admin.create(email: 'admin@example.com', password: 'password')
 
-Item.create(genre_id:1, name: 'Product 1', image: File.open('path/to/image1.jpg'))
+Genre.create(name: 'Cake')
+
+item = Item.new(
+  genre_id: 1,
+  name: "milk cake",
+  description: "シンプルながらも洗練されたデザインで、ミルクの芳醇な風味が鮮やかに広がる、大人のためのケーキです。",
+  price: 1200,
+  is_selling: true
+)
+
+image_file = File.open(Rails.root.join('app/assets/images/cake/milkcake.jpg'))
+item.image.attach(io: image_file, filename: 'milkcake.jpg')
+item.save!
