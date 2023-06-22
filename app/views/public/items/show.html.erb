@@ -1,31 +1,46 @@
-<h5>商品詳細</h5>
-<%= image_tag @item.image, size: "200x200" %>
-<table>
-  <tr>
-    <th>商品名</th>
-    <td><%= @item.name %></td>
-  </tr>
-  <tr>
-    <th>商品説明</th>
-    <td><%= @item.description %></td>
-  </tr>
-  <tr>
-    <th>ジャンル</th>
-    <td><%= @item.genre.name %></td>
-  </tr>
-  <tr>
-    <th>税込み価格<br>(税抜価格)</th>
-    <td><%= "#{@item.price}" %>円</td>
-  </tr>
-  <tr>
-    <th>販売ステータス</th>
-    <td>
-    <% if @item.is_selling == true %>
-      <span>販売中</span>
-    <% else %>
-      <span>販売停止中</span>
-    <% end %>
-    </td>
-  </tr>
-</table>
-<%= link_to "編集する", edit_admin_item_path(@item) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag @item.get_image(300, 300) %>
+    </div>
+    <div class="col-md-6">
+      <%= form_with(model: [@item, @cart_item], url: cart_items_path, method: :post, local: true) do |f| %>
+        <table class="table t-bordered">
+          <tr>
+            <th></th>
+            <td>
+              <h4><%= @item.item_name %></h4>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <h5><%= @item.item_explanation %></h5>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <h5>¥<%= number_with_delimiter(@item.tax_included_price) %>(税込)</h5>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <% if @item.is_active == true %>
+              <%= f.label :count, "個数選択" %>
+              <%= f.select :count, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %>
+              <%= f.hidden_field :item_id, value: @item.id %>
+            </td>
+            <td>
+              <%= f.submit "カートに入れる", class: "btn custom-button" %>
+              <% elsif @item.is_active == false %>
+              販売停止中
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

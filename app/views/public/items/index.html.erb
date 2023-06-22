@@ -5,18 +5,33 @@
     </div>
   </div>
 
-<table class="item-table">
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= image_tag item.image, size: '200x200' %></td>
-        <td><%= item.name %></td>
-        <td>¥<%= number_with_delimiter(item.tax_included_price) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row">
+    <table class="item-table col-12">
+      <tbody>
+        <% @items.each_slice(4) do |items| %>
+        <tr>
+          <% items.each do |item| %>
+          <td>
+            <div class="item-wrapper">
+              <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
+              <div class="card m-4" style="width: 200px; height: 300px;">
+                <%= image_tag item.get_image(600, 600), class: "card-img-top", alt: item.name %>
+                <div class="card-body">
+                  <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= item.name %></h5>
+                  <p class="card-text">¥<%= number_with_delimiter(item.tax_included_price) %></p>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<%= paginate @items %>
-
+<div class="row justify-content-center mb-4">
+  <%= paginate @items %>
 </div>
