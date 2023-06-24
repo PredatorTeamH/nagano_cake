@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_fill: [width, height]).processed
   end
-  
+
   def get_image_fit(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
