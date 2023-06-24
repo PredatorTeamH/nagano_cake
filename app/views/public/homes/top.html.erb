@@ -1,13 +1,42 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <p>
-        ようこそ、ながのCAKEへ!<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の開覧はできますが、<br>
-        購入には会員登録が必要になります。
-      </p>
-      <h2>新着商品</h2>
+    <div class="col-1 my-4"></div>
+    <div class="col-11 my-4">
+      <div class="image-background">
+        <p class="image-overlay">
+          ようこそ、ながのCAKEへ!<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="px-4 ml-4"><strong>新着商品</strong></h3>
+        <table class="item-table">
+          <tbody>
+          <% @items.each do |item| %>
+          <td>
+            <div class="item-wrapper">
+              <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
+              <div class="card m-4" style="width: 200px; height: 300px;">
+                <%= image_tag item.get_image_fill(600, 600), class: "card-img-top" %>
+                <div class="card-body">
+                  <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= item.name %></h5>
+                  <p class="card-text">¥<%= number_with_delimiter(item.tax_included_price) %></p>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </td>
+          <% end %>
+          </tbody>
+        </table>
+        <div class = "text-right mb-4">
+          <%= link_to "全ての商品を見る>", items_path, class: "text-decoration-none text-brown" %>
+        </div>
     </div>
   </div>
 </div>
