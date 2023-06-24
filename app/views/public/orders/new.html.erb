@@ -9,19 +9,20 @@
 <br>
 <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
 <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
-        <h4 class="h4"><b>お届け先</b></h4>
-        <%= f.radio_button :shipping_address, "address" %>
-        <%= f.label :shipping_address, "ご自身の住所" %>
-        <br>
 
-        <%= f.radio_button :shipping_address, "select_address" %>
-        <%= f.label :select_address, "登録住所からの選択" %>
-<%= f.select :address_id, options_from_collection_for_select(Customer.all, :id, :customer_address_display) %>
-        <br>
+<h4 class="h4"><b>お届け先</b></h4>
+<%= f.radio_button :select_address, 0 %><%= f.label :ご自身の住所 %>
+<div class="pl-4 mb-2">
+  <%= current_customer.customer_address_display %><br>
+  <%= current_customer.last_name+current_customer.first_name %>
+</div>
 
-        <%= f.radio_button :shipping_address, "new_address" %>
-        <%= f.label :new_address, "新しいお届け先" %>
+<%= f.radio_button :select_address, 1 %><%= f.label :登録済みの住所から選択 %>
+<div class="pl-4 mb-2">
+  <%= f.select :address_id, options_from_collection_for_select(current_customer.shipping_addresses, :id, :address_display) %>
+</div>
 
+<%= f.radio_button :select_address, 2 %><%= f.label :新しいお届け先 %>
 <div class="pl-4 row">
   <div class="col-12">
     <div class="row mb-2">
@@ -32,14 +33,12 @@
         <%= f.text_field :shipping_zip_code, class: "form-control" %>
       </div>
     </div>
-
     <div class="row mb-2">
       <%= f.label :住所, class: "col-4" %>
       <div class="col-8">
         <%= f.text_field :shipping_address, class: "form-control" %>
       </div>
     </div>
-
     <div class="row mb-2">
       <%= f.label :宛名, class: "col-4" %>
       <div class="col-4">
@@ -48,10 +47,11 @@
     </div>
   </div>
 </div>
- <div class="d-flex justify-content-center">
+
+  <div class="d-flex justify-content-center">
       <%= f.submit "確認画面へ進む", class: "btn btn-primary ml-4 mt-3" %>
       <% end %>
   </div>
+    </div>
   </div>
-</div>
 </div>
