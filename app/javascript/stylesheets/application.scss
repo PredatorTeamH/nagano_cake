@@ -1,2 +1,28 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.image-background {
+  position: relative;
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  max-width: 60%;
+  height: 300px;
+  margin: 0 auto;
+}
+
+p.image-overlay {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+p.image-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
