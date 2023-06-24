@@ -11,22 +11,22 @@
       <p><%= @item.description %></p>
       <h4 class="mt-auto">¥<%= number_with_delimiter(@item.tax_included_price) %><small>(税込)</small></h4>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-6"></div>
-      <%= form_with(model: [@item, @cart_item], url: cart_items_path, method: :post, local: true) do |f| %>
-      <div class="col-6">
-        <% if @item.is_selling == true %>
-          <%= f.label :quantity, "個数選択" %>
-          <%= f.select :quantity, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.submit "カートに入れる", class: "btn btn-success" %>
-        <% elsif @item.is_selling == false %>
-          販売停止中
-        <% end %>
-      </div>
+  <div class="row">
+    <div class="col-6"></div>
+    <%= form_with(model: [@item, @cart_item], url: cart_items_path, method: :post, local: true) do |f| %>
+    <div class="col-6">
+      <% if @item.is_selling == true %>
+        <%= f.label :quantity, "個数選択" %>
+        <%= f.select :quantity, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      <% elsif @item.is_selling == false %>
+        販売停止中
       <% end %>
     </div>
-
+    <% end %>
   </div>
+
 </div>
