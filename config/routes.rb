@@ -17,8 +17,8 @@ scope module: :public do
     patch  'customers/information' => 'customers#update', as: 'update_customer'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'customer_withdraw'
-    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'orders/confirm' => 'orders#confirm', as: 'orders_confirm'
     post 'orders/complete' => 'orders#complete', as: 'orders_complete'
     resources :orders, only: [:new, :index, :create, :show]
