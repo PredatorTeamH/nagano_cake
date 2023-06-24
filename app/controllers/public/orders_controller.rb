@@ -1,31 +1,50 @@
 class Public::OrdersController < ApplicationController
-  def new 
+  def new
     @order = Order.new
     #@shipping_addresses = current_customer.shipping_addresses
   end
- 
+
   def confirm
   @order = Order.new(order_params)
   @order.freight = 800
   @cart_items = current_customer.cart_items
-  total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.quantity }
-  @order.total_price = total_price + @order.freight
-  case params[:order][:shipping_address]
-  when "address"
-    @order.shipping_address = "ご自身の住所"
-  when "select_address"
-    @order.shipping_address = "登録住所からの選択"
-  when "new_address"
-    @order.shipping_address = "新しいお届け先"
+  total_price = @cart_items.sum { |cart_item| cart_item.subtotal * cart_item.quantity }
+  @order.total_price = total_price
+
+if params[:order][:select_address] == "0"
+  @order.shipping_zip_code = current_customer.zip_code
+  @order.shipping_address = current_customer.address
+  @order.address_name = current_customer.last_name + current_customer.first_name
+elsif params[:order][:select_address] == "1"
+  #unless current_customer.orders.exists? # 配送先登録がない場合
+     #byebug
+    #flash.now[:notice] = "登録済みの住所がありません"
+    #render "new"
+  #else
+    @customer = current_customer
+    @address = @customer.shipping_addresses.find(params[:order][:address_id])
+    @order.shipping_zip_code = @address.shipping_zip_code
+    @order.shipping_address = @address.shipping_address
+    @order.address_name = @address.address_name
+  #end
+elsif params[:order][:select_address] == "2"
+  if params[:order][:shipping_zip_code].empty? || params[:order][:shipping_address].empty? || params[:order][:address_name].empty?
+    flash.now[:notice] = "住所を正しく入力してください"
+    render "new"
+  else
     @order.shipping_zip_code = params[:order][:shipping_zip_code]
     @order.shipping_address = params[:order][:shipping_address]
     @order.address_name = params[:order][:address_name]
   end
+else
+  flash.now[:notice] = "住所を選択してください"
+  render "new"
+end
   end
- 
+
   def complete
   end
- 
+
 def create
   @order = Order.new(order_params)
  puts @order.inspect
@@ -35,15 +54,15 @@ def create
     render :new
     end
 end
- 
+
   def index
     @orders = Order.all
-  end 
- 
+  end
+
   def show
     @order = Order.find(params[:id])
   end
- 
+
   private
 
  def order_params
