@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <h3 class="px-4 my-4 ml-4"><strong>商品一覧</strong> <span class="small">(全<%= @items.total_count %>件)</span></h3>
+      <h3 class="px-4 mt-4 ml-4"><strong>商品一覧</strong> <span class="small">(全<%= @items.total_count %>件)</span></h3>
     </div>
   </div>
 
@@ -15,7 +15,7 @@
             <div class="item-wrapper">
               <%= link_to item_path(item.id), class: "text-decoration-none text-dark" do %>
               <div class="card m-4" style="width: 200px; height: 300px;">
-                <%= image_tag item.get_image(600, 600), class: "card-img-top", alt: item.name %>
+                <%= image_tag item.get_image_fill(600, 600), class: "card-img-top" %>
                 <div class="card-body">
                   <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= item.name %></h5>
                   <p class="card-text">¥<%= number_with_delimiter(item.tax_included_price) %></p>
@@ -30,8 +30,9 @@
       </tbody>
     </table>
   </div>
-</div>
 
-<div class="row justify-content-center mb-4">
-  <%= paginate @items %>
+  <div class="row justify-content-center my-4">
+    <%= paginate @items %>
+  </div>
+
 </div>
