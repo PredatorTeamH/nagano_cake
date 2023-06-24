@@ -24,7 +24,7 @@
           <tr>
             <td><%= item.id %></td>
             <td ><%= link_to item.name, admin_item_path(item), class: "text-dark border-bottom border-dark" %></td>
-            <td><%= item.price %></td>
+            <td><%= "#{number_with_delimiter(item.price)}" %></td>
             <td><%= item.genre.name %></td>
             <% if item.is_selling == true %>
               <th class="text-success">販売中</th>
