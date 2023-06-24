@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2023_06_20_000229) do
     t.string "zip_code", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
-    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -108,10 +107,10 @@ ActiveRecord::Schema.define(version: 2023_06_20_000229) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "shipping_zip_code", null: false
+    t.string "shipping_zip_code", null: false
     t.string "shipping_address", null: false
     t.string "address_name", null: false
-    t.string "payment_methods", null: false
+    t.string "payment_method", null: false
     t.integer "freight", null: false
     t.integer "total_price", null: false
     t.integer "status", default: 0, null: false
