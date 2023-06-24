@@ -36,15 +36,15 @@
         <tbody>
           <tr>
             <td class="table-active">商品合計</td>
-            <td><%= @order.total_price %>円</td>
+            <td><%= @order.total_price %></td>
           </tr>
           <tr>
             <td class="table-active">送料</td>
-            <td><%= @order.freight %>円</td>
+            <td><%= @order.freight %></td>
           </tr>
           <tr>
             <td class="table-active"><strong>ご請求額</strong></td>
-            <td><strong><%= @order.total_price + @order.freight %>円</strong></td>
+            <td><strong><%= @order.total_price + @order.freight %></strong></td>
           </tr>
         </tbody>
       </table>
@@ -67,9 +67,9 @@
           <% @order.order_items.each do |item| %>
             <tr class="table-background">
               <td><%= item.product.name %></td>
-              <td><%= item.product.price %>円</td>
+              <td><%= item.product.price %></td>
               <td><%= item.quantity %></td>
-              <td><%= item.subtotal %>円</td>
+              <td><%= item.subtotal %></td>
             </tr>
           <% end %>
         </tbody>

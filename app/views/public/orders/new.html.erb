@@ -22,27 +22,36 @@
         <%= f.radio_button :shipping_address, "new_address" %>
         <%= f.label :new_address, "新しいお届け先" %>
 
-        <div class="pl-4 row">
-          <div class="col-9">
-            <div class="row mb-2">
-              <td>郵便番号（ハイフン無し）</td>
-              <td><%= f.text_field :shipping_zip_code %></td>
-            </div>
+<div class="pl-4 row">
+  <div class="col-12">
+    <div class="row mb-2">
+      <div class="col-4">
+        <%= f.label :郵便番号（ハイフンなし） %>
+      </div>
+      <div class="col-4">
+        <%= f.text_field :shipping_zip_code, class: "form-control" %>
+      </div>
+    </div>
 
-            <div class="row mb-2">
-              <td>住所</td>
-              <td><%= f.text_field :shipping_address %></td>
-            </div>
+    <div class="row mb-2">
+      <%= f.label :住所, class: "col-4" %>
+      <div class="col-8">
+        <%= f.text_field :shipping_address, class: "form-control" %>
+      </div>
+    </div>
 
-            <div class="row mb-2">
-              <td>宛名</td>
-              <td><%= f.text_field :address_name %></td>
-            </div>
-          </div>
-        </div>
-
-  <%= f.submit "確認画面へ進む", class: "btn btn-primary ml-4 mt-3" %>
-      <% end %>
+    <div class="row mb-2">
+      <%= f.label :宛名, class: "col-4" %>
+      <div class="col-4">
+        <%= f.text_field :address_name, class: "form-control" %>
+      </div>
     </div>
   </div>
+</div>
+ <div class="d-flex justify-content-center">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary ml-4 mt-3" %>
+      <% end %>
+  </div>
+  </div>
+</div>
 </div>
