@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
   @order = Order.new(order_params)
   @order.freight = 800
   @cart_items = current_customer.cart_items
-  total_price = @cart_items.sum { |cart_item| cart_item.subtotal * cart_item.quantity }
+  total_price = @cart_items.sum { |cart_item| cart_item.subtotal }
   @order.total_price = total_price
 
 if params[:order][:select_address] == "0"
