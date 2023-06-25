@@ -19,15 +19,28 @@
         <tbody>
           <% @orders.each do |order| %>
           <tr>
-            <td><%= order.created_at %></td>
-            <td><%= order.customer.name %></td>
-            <td><%= order.quantity %></td>
-            <td><%= order.quantity %></td>
+            <td>
+              <%= link_to admin_order_path(order.id), class: "text-dark" do %>
+                <%= order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d %H:%M:%S') %>
+              <% end %>
+            </td>
+            <td>
+              <%= order.customer.last_name %><%= order.customer.first_name %>
+            </td>
+            <td>
+              <% total_quantity = order.order_items.sum(:quantity) %>
+              <%= total_quantity %>
+            </td>
+            <td>
+              <%= t("enums.order.status.#{order.status}") %>
+            </td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
-  <%= paginate @paged_orders %>
+  <div class="row justify-content-center">
+    <%= paginate @orders %>
+  </div>
 </div>

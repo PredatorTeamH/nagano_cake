@@ -45,3 +45,25 @@ item3 = Item.new(
 image_file = File.open(Rails.root.join('app/assets/images/cake/matchacake.jpg'))
 item3.image.attach(io: image_file, filename: 'matchacake.jpg')
 item3.save!
+
+# 注文データの作成
+item1 = Item.first # 注文する商品のデータを取得
+
+order = Order.create(
+  customer_id: 1,
+  shipping_zip_code: '123-4567',
+  shipping_address: '東京都渋谷区',
+  address_name: '山田太郎',
+  payment_method: 1,
+  freight: 500,
+  total_price: item1.price + 500,
+  status: 0
+)
+
+OrderItem.create(
+  order_id: order.id,
+  item_id: item1.id,
+  quantity: 1,
+  tax_in_price: item1.price,
+  status: 0
+)

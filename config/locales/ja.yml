@@ -7,7 +7,7 @@
         status:
            waiting: "入金待ち"
            confirm: "入金確認"
-           pruduction: "製作中"
+           production: "製作中"
            preparation: "発送準備中"
            sent: "発送済み"
       order_item:
