@@ -69,7 +69,6 @@ end
 
   def show
     @order = Order.find(params[:id])
-    puts @order.payment_method
   end
 
   private
