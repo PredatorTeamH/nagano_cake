@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2023_06_20_000229) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2023_06_20_000229) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2023_06_20_000229) do
     t.string "zip_code", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
-    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -108,10 +107,10 @@ ActiveRecord::Schema.define(version: 2023_06_20_000229) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "shipping_zip_code", null: false
+    t.string "shipping_zip_code", null: false
     t.string "shipping_address", null: false
     t.string "address_name", null: false
-    t.string "payment_methods", null: false
+    t.integer "payment_method", null: false
     t.integer "freight", null: false
     t.integer "total_price", null: false
     t.integer "status", default: 0, null: false

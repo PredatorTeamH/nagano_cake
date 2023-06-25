@@ -23,7 +23,7 @@
         <% @cart_items.each do |cart_item| %>
           <tr>
             <td class="align-middle">
-              <%= image_tag cart_item.item.get_image_fit(80, 50) %>
+              <%= image_tag cart_item.item.get_image_fill(50, 50) %>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <%= cart_item.item.name %>
             </td>
