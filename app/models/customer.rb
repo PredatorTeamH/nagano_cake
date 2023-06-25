@@ -5,6 +5,16 @@ class Customer < ApplicationRecord
   def customer_address_display
     '〒' + zip_code + ' ' + address
   end
+  
+  def full_name
+    last_name + first_name
+  end
+  
+  def full_kana_name
+    last_kana_name + first_kana_name
+  end
+  
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
