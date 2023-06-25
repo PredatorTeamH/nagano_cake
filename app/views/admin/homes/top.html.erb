@@ -20,7 +20,9 @@
           <% @orders.each do |order| %>
           <tr>
             <td>
-              <%= order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d %H:%M:%S') %>
+              <%= link_to admin_order_path(order.id), class: "text-dark" do %>
+                <%= order.created_at.in_time_zone('Asia/Tokyo').strftime('%Y/%m/%d %H:%M:%S') %>
+              <% end %>
             </td>
             <td>
               <%= order.customer.last_name %><%= order.customer.first_name %>
@@ -38,7 +40,7 @@
       </table>
     </div>
   </div>
-  <div class='row mx-auto'>
-      <%= paginate @orders %>
+  <div class="row justify-content-center">
+    <%= paginate @orders %>
   </div>
 </div>
