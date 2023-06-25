@@ -1,42 +1,38 @@
 <div class='container'>
-  <div class='row pt-4 pb-4'>
+  <div class='row pt-4'>
     <div class="col-6 text-center">
       <h4><strong>商品新規登録</strong></h4>
     </div>
   </div>
 
+  <div class='row pt-4 mx-auto'>
+    <div class="col-6">
   <%= form_with model: @item, url: admin_items_path do |f| %>
-    <table class='mx-auto'>
-      <tr>
-        <td class="pl-3 pb-3">商品画像</td>
-        <td class="pl-3 pb-3"><%= f.file_field :image, accept: "image/*" %></td>
-      </tr>
-      <tr>
-        <td class="pl-3 pb-3">商品名</td>
-        <td class="pl-3 pb-3"><%= f.text_field :name, placeholder: "商品名", class: "form-control col-12", rows: 4  %></td>
-      </tr>
-      <tr>
-        <td class="pl-3 pb-3">商品説明</td>
-        <td class="pl-3 pb-3"><%= f.text_area :description, placeholder: "ここに説明を記述します", class: "form-control col-12", rows: 4 %></td>
-      </tr>
-      <tr>
-        <td class="pl-3 pb-3">ジャンル</td>
-        <td class="pl-3 pb-3"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択してください --" %></td>
-      </tr>
-      <tr>
-        <td class="pl-3 pb-3">税抜価格</td>
-        <td class="pl-3 pb-3"><%= f.text_field :price, placeholder: "1000" %>円</td>
-      </tr>
-      <tr>
-        <td class="pl-3 pb-3">販売ステータス</td>
-        <td class="pl-3 pb-3">
+        <div class="pl-3 pb-3">商品画像</div>
+        <div class="pl-3 pb-3"><%= f.file_field :image, accept: "image/*" %></div>
+
+        <div class="pl-3 pb-3">商品名</div>
+        <div class="pl-3 pb-3"><%= f.text_field :name, placeholder: "商品名", class: "form-control col-12", rows: 4  %></div>
+
+        <div class="pl-3 pb-3">商品説明</div>
+        <div class="pl-3 pb-3"><%= f.text_area :description, placeholder: "ここに説明を記述します", class: "form-control col-12", rows: 4 %></div>
+
+        <div class="pl-3 pb-3">ジャンル</div>
+        <div class="pl-3 pb-3"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択してください --" %></div>
+
+        <div class="pl-3 pb-3">税抜価格</div>
+        <div class="pl-3 pb-3"><%= f.text_field :price, placeholder: "1000" %>円</div>
+
+        <div class="pl-3 pb-3">販売ステータス</div>
+        <div class="pl-3 pb-3">
           <%= f.radio_button :is_selling, :true, checked: true %>
           <%= f.label :is_selling, "販売中", { value: :true } %>
           <%= f.radio_button :is_selling, :false %>
-          <%= f.label :is_selling, "販売停止中", { value: :false } %>
-        </td>
-      </tr>
-    </table>
+          <%= f.label :is_selling, "売切れ", { value: :false } %>
+        </div>
+
+    </div>
+  </div>
 
     <div class="text-center">
       <%= f.submit "新規登録", class: "btn btn-lg btn-success" %>
