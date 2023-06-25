@@ -20,7 +20,7 @@ scope module: :public do
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'orders/confirm' => 'orders#confirm', as: 'orders_confirm'
-    post 'orders/complete' => 'orders#complete', as: 'orders_complete'
+    get 'orders/complete' => 'orders#complete', as: 'orders_complete'
     resources :orders, only: [:new, :index, :create, :show]
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
 

@@ -1,7 +1,6 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
-    #@shipping_addresses = current_customer.shipping_addresses
   end
 
   def confirm
@@ -23,9 +22,9 @@ elsif params[:order][:select_address] == "1"
   #else
     @customer = current_customer
     @address = @customer.shipping_addresses.find(params[:order][:address_id])
-    @order.shipping_zip_code = @address.shipping_zip_code
-    @order.shipping_address = @address.shipping_address
-    @order.address_name = @address.address_name
+    @order.shipping_zip_code = @address.zip_code
+    @order.shipping_address = @address.address
+    @order.address_name = @address.name
   #end
 elsif params[:order][:select_address] == "2"
   if params[:order][:shipping_zip_code].empty? || params[:order][:shipping_address].empty? || params[:order][:address_name].empty?
@@ -47,11 +46,20 @@ end
 
 def create
   @order = Order.new(order_params)
- puts @order.inspect
+  @order.customer_id = current_customer.id
     if @order.save
-   redirect_to order_path(@order)
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+      @order_items = OrderItem.create(order_id: @order.id,
+                                           item_id: cart_item.item_id,
+                                           quantity: cart_item.quantity,
+                                           tax_in_price: cart_item.item.price
+                                           )
+      end
+      @cart_items.destroy_all
+      redirect_to orders_complete_path
     else
-    render :new
+      render "confirm"
     end
 end
 
@@ -66,6 +74,6 @@ end
   private
 
  def order_params
-  params.require(:order).permit(:payment_method, :shipping_zip_code, :shipping_address, :address_name, :freight, :total_price)
+  params.require(:order).permit(:payment_method, :shipping_zip_code, :shipping_address, :address_name, :freight, :total_price, :status)
  end
 end

@@ -3,7 +3,7 @@ class Admin::OrderItemsController < ApplicationController
   def update
     @order_item = OrderItem.find(params[:id])
     @order = @order_item.order
-    @order_details = @order.order_items
+    @order_items = @order.order_items
 
     @order_item.update(order_item_params)
     count = @order_details.completion.count
