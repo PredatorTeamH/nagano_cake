@@ -18,7 +18,7 @@ item1 = Item.new(
   genre_id: 1,
   name: "milk cake",
   description: "シンプルながらも洗練されたデザインで、ミルクの芳醇な風味が鮮やかに広がる、大人のためのケーキです。",
-  price: 1200,
+  price: 400,
   is_selling: true
 )
 
@@ -59,75 +59,75 @@ item4 = Item.new(
 )
 
 image_file = File.open(Rails.root.join('app/assets/images/cake/cheesecake-with-blueberries-and-raspberries.jpg'))
-item5.image.attach(io: image_file, filename: 'cheesecake-with-blueberries-and-raspberries.jpg')
-item5.save!
+item4.image.attach(io: image_file, filename: 'cheesecake-with-blueberries-and-raspberries.jpg')
+item4.save!
 
 item5 = Item.new(
   genre_id: 2,
   name: "creamcheese in buns",
   description: "クリームチーズパンは、滑らかでクリーミーなクリームチーズがパンのベースとなり、豊かな味わいのベリーがアクセントとなるスイーツです。ふんわりとした甘さのあるパン生地の中には、口溶けの良いクリームチーズがたっぷりと詰まっています。",
-  price: 500,
+  price: 200,
   is_selling: true
 )
 
-image_file = File.open(Rails.root.join('app/assets/images/cake/cheesecake-with-blueberries-and-raspberries.jpg'))
-item5.image.attach(io: image_file, filename: 'cheesecake-with-blueberries-and-raspberries.jpg')
+image_file = File.open(Rails.root.join('app/assets/images/cake/buns-with-cream-cheese-inside.jpg'))
+item5.image.attach(io: image_file, filename: 'buns-with-cream-cheese-inside.jpg')
 item5.save!
 
-Customer.create!(
+customer = Customer.new(
   email: "customer1@example.com",
-  encrypted_password: "yamada",
+  password: "yamada",
   last_name: "山田",
   first_name: "太郎",
   last_kana_name: "ヤマダ",
   first_kana_name: "タロウ",
-  zip_code: "123-4567",
+  zip_code: "1234567",
   address: "東京都渋谷区1-2-3",
-  phone_number: "090-1234-5678",
+  phone_number: "09012345678",
   is_active: true
 )
 
 Customer.create!(
   email: "customer2@example.com",
-  encrypted_password: "satohanako",
+  password: "satohanako",
   last_name: "佐藤",
   first_name: "花子",
   last_kana_name: "サトウ",
   first_kana_name: "ハナコ",
-  zip_code: "987-6543",
+  zip_code: "9876543",
   address: "大阪府大阪市4-5-6",
-  phone_number: "080-9876-5432",
+  phone_number: "08098765432",
   is_active: true
 )
 
 Customer.create!(
   email: "customer3@example.com",
-  encrypted_password: "suzuki",
+  password: "suzuki",
   last_name: "鈴木",
   first_name: "次郎",
   last_kana_name: "スズキ",
   first_kana_name: "ジロウ",
-  zip_code: "567-8901",
+  zip_code: "5678901",
   address: "京都府京都市7-8-9",
-  phone_number: "070-1234-5678",
+  phone_number: "07012345678",
   is_active: true
 )
 
 10.times do |n|
   email = "customer#{n + 4}@example.com"
-  encrypted_password = "password#{n + 4}"
+  password = "password#{n + 4}"
   last_name = "苗字#{n + 4}"
   first_name = "名前#{n + 4}"
   last_kana_name = "ミョウジ#{n + 4}"
   first_kana_name = "ナマエ#{n + 4}"
-  zip_code = "111-2222"
+  zip_code = "1112222"
   address = "都道府県#{n + 4}番地"
-  phone_number = "080-1234-5678"
+  phone_number = "0801234#{n + 5}#{n + 6}#{n + 8}#{n + 4}"
   is_active = true
 
   Customer.create!(
     email: email,
-    encrypted_password: encrypted_password,
+    password: password,
     last_name: last_name,
     first_name: first_name,
     last_kana_name: last_kana_name,
@@ -140,7 +140,7 @@ Customer.create!(
 end
 
 11.times do |n|
-  customer_id = n + 1
+  customer_id = 2
   shipping_zip_code = '123-4567'
   shipping_address = '東京都渋谷区'
   address_name = '山田太郎'
@@ -149,7 +149,7 @@ end
   total_price = Item.find(1).price + 800
   status = 0
 
-  Order.create!(
+  order = Order.create!(
     customer_id: customer_id,
     shipping_zip_code: shipping_zip_code,
     shipping_address: shipping_address,
@@ -159,20 +159,19 @@ end
     total_price: total_price,
     status: status
   )
-end
 
-11.times do |n|
-  order_id = 1
-  item_id = 1
-  quantity = n + 1
-  tax_in_price = Item.find(1).price
-  status = 0
+  10.times do
+    item_id = 1
+    quantity = 10
+    tax_in_price = Item.find(1).price
+    status = 0
 
-  OrderItem.create!(
-    order_id: order_id,
-    item_id: item_id,
-    quantity: quantity,
-    tax_in_price: tax_in_price,
-    status: status
-  )
+    OrderItem.create!(
+      order_id: order.id,
+      item_id: item_id,
+      quantity: quantity,
+      tax_in_price: tax_in_price,
+      status: status
+    )
+  end
 end
