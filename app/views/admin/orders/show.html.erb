@@ -9,7 +9,7 @@
   <body>
     <tr>
       <th>購入者</th>
-      <td><%= current_customer.last_name+current_customer.first_name %></td>
+      <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
     </tr>
     <tr>
       <th>注文日</th>
