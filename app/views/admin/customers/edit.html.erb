@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
-    <h2><strong><%= @customer.first_name %>さんの会員情報編集</strong></h2>
+    <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+      <h2 class="px-4 mt-4 ml-4"><strong><%= @customer.first_name %>さんの会員情報編集</strong></h2>
+    </div>
   </div>
-  
-  <%= form_with model:@customer do |f| %>
-    <table class="table">
+
+  <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+    <table class='table table-borderless px-4 mt-4 ml-4'>
       <tr>
         <td>会員ID</td>
         <td><%= @customer.id %></td>
@@ -38,20 +40,19 @@
       <tr>
       <td>会員ステータス</td>
       <td>
-        <%= f.label :is_active, "有効",  {value: :true, style: "display: inline-block;"} %> 
+        <%= f.label :is_active, "有効",  value: :true, class: "text-success, inline-block" %>
         <%= f.radio_button :is_active, true%>
       </td>
       <td>
-        <%= f.label :is_active, "退会",  {value: :fales, style: "display: inline-block;"} %> 
-        <%= f.radio_button :is_active, false %> 
+        <%= f.label :is_active, "退会",  {value: :fales, class: "text-muted, inline-block;"} %>
+        <%= f.radio_button :is_active, false %>
       </td>
     </tr>
     </tbody>
   </table>
-  <div><%= f.submit "変更を保存" , class: "btn btn-sm btn-success" %></div>
+  <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><%= f.submit "変更を保存" , class: "btn-lg btn-success px-4 mt-4 ml-4" %></div>
   <% end %>
 </div>
-  
-  
-  
-  
+
+
+

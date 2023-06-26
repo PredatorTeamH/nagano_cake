@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
-    <h2><strong>配送先登録/一覧</strong></h2>
+    <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="px-4 mt-4 ml-4"><strong>配送先登録/一覧</strong></h2>
+    </div>
   </div>
   <div class="row">
       <!--配送先登録フォーム-->
       <%= form_with model:@address_new do |f| %>
-      <table class="table">
+      <table class='table table-borderless  px-4 mt-4 ml-4'>
         <tr>
           <td>郵便番号</td>
           <td><%= f.text_field :zip_code, class: "form-control" %></td>
@@ -25,7 +27,7 @@
       <% end %>
 
       <!--配送先一覧-->
-      <table class="table">
+      <table class='table table-bordered  px-4 mt-4 ml-4'>
         <thead>
           <tr>
             <th>郵便番号</th>
@@ -41,8 +43,8 @@
               <td><%= address.address %></td>
               <td><%= address.name %></td>
               <td>
-                <%= link_to "編集する", edit_shipping_address_path(address), class: "btn custom-button" %>
-                <%= link_to "削除する", shipping_address_path(address), method: :delete, class: "btn delete-button" %>
+                <%= link_to "編集する", edit_shipping_address_path(address), class: "btn btn-sm btn-success" %>
+                <%= link_to "削除する", shipping_address_path(address), method: :delete, class: "btn btn-sm btn-danger" %>
               </td>
             </tr>
           <% end %>

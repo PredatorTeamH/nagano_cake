@@ -1,15 +1,22 @@
 <div class="container">
   <div class="row">
-    <h2><strong>マイページ</strong></h2>
+    <div class= "mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+      <h2 class="px-4 mt-4 ml-4"><strong>マイページ</strong></h2>
+    </div>
   </div>
-  <table class='table'>
+  
+  <div class="row">
+  <table class='table table-borderless px-4 mt-4 ml-4'>
     <tbody>
       <tr>
-        <td><h3>登録情報</h3></td>
-        <td><%= link_to '編集する', edit_customer_path(current_customer), class: "btn btn-sm btn-success" %></td>
+        <td><h3><strong>登録情報</strong></h3></td>
+        <td><%= link_to '編集する', edit_customer_path(current_customer), class: "btn btn-success" %></td>
       </tr>
     </tbody>
-  <table class='table'>
+  </div>
+  
+  <div class="row">
+  <table class='table table-bordered'>
     <tbody>
       <tr>
         <td>
@@ -62,16 +69,19 @@
     </tbody>
   </table>
   
-  <table class="table">
+  <div class="row">
+  <table class='table table-borderless px-4 mt-4 ml-4'>
       <tr>
         <td><h3><strong>配送先</strong></h3></td>
         <!--配送先一覧にリンク-->
-        <td><%= link_to "一覧を見る", shipping_addresses_path, class: "btn btn-primary btn-sm btn-block" %></td>
+        <td><%= link_to "一覧を見る", shipping_addresses_path, class: "btn btn-primary" %></td>
       </tr>
       <tr>
         <td><h3><strong>注文履歴</strong></h3></td>
         <!--注文履歴一覧にリンク-->
-        <td><%= link_to"一覧を見る", orders_path, class: "btn btn-primary btn-sm btn-block" %></td>
+        <td><%= link_to"一覧を見る", orders_path, class: "btn btn-primary" %></td>
       </tr>
+  </div>
+  </div>
   </div>
 </div>

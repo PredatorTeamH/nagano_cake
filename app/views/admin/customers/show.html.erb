@@ -1,9 +1,11 @@
 <!--Admin用の会員詳細ページ-->
 <div class="container">
   <div class="row">
-    <h2><strong><%= @customer.first_name %>さんの詳細</strong></h2>
+    <div class="mx-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="px-4 mt-4 ml-4"><strong><%= @customer.first_name %>さんの詳細</strong></h2>
+    </div>
   </div>
-  <table class='table'>
+  <table class='table table-borderless px-4 mt-4 ml-4'>
     <tbody>
       <tr>
         <td>
@@ -66,18 +68,19 @@
           会員ステータス
         </td>
         <% if @customer.is_active %>
-          <td><%= "有効" %></td>
+          <td class='text-success  font-weight-bold'><%= "有効" %></td>
         <% else %>
-          <td><%= "退会" %></td>
+          <td class='text-muted font-weight-block'><%= "退会" %></td>
         <% end %>
       </tr>
     </tbody>
   </table>
-  <table>
+
+  <table class='table table-borderless px-4 mt-4 ml-4'>
     <tbody>
       <tr>
-        <td><%= link_to "編集する", edit_admin_customer_path, class: "btn btn-sm btn-success" %></td>
-        <td><%= link_to "注文履歴一覧を見る", admin_root_path(@customer.id), class: "btn btn-primary btn-sm btn-block" %></td>
+        <td><%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %></td>
+        <td><%= link_to "注文履歴一覧を見る", admin_root_path(@customer.id), class: "btn btn-primary" %></td>
       </tr>
     </tbody>
   </table>
