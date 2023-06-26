@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @genre = Genre.new
@@ -17,8 +18,11 @@ class Admin::GenresController < ApplicationController
 
   def update
     genre = Genre.find(params[:id])
-    genre.update(genre_params)
-    redirect_to admin_genres_path
+    if genre.update(genre_params)
+      redirect_to admin_genres_path
+    else
+      redirect_to request.referer
+    end
   end
 
   private
