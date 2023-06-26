@@ -4,6 +4,9 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
   has_one_attached :image
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
 
   def tax_included_price
     (price * 1.1).floor

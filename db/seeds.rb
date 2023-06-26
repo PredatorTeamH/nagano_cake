@@ -8,7 +8,10 @@
 
 Admin.create(email: 'admin@example.com', password: 'password')
 
-Genre.create(name: 'Cake')
+Genre.create(name: 'ケーキ')
+Genre.create(name: 'プリン')
+Genre.create(name: '焼き菓子')
+Genre.create(name: 'キャンディ')
 
 item1 = Item.new(
   genre_id: 1,

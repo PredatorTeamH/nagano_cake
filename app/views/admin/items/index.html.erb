@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row pt-4'>
-    <h4>商品一覧</h4>
+    <h4><strong>商品一覧</strong></h4>
     <div class="col-10"></div>
     <%= link_to new_admin_item_path, class: "btn rounded-circle btn-success" do %>
       <i class="fas fa-plus"></i>
@@ -29,7 +29,7 @@
             <% if item.is_selling == true %>
               <th class="text-success">販売中</th>
             <% else %>
-              <th class="text-secondary">販売停止中</th>
+              <th class="text-secondary">売切れ</th>
             <% end %>
           </tr>
         <% end %>
