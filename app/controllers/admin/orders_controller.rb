@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
     Order.transaction do
       @order.update(order_params)
         if @order.status == "confirm"
-          @order_items.update(status: 2)
+          @order_items.update(status: 1)
         end
       end
       redirect_to admin_order_path(@order)
