@@ -1,0 +1,35 @@
+@use '~bootstrap/scss/bootstrap';
+@use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+body {
+  background-color: #fffafa;
+}
+
+.custom-bg-color {
+  background-color: #943938;
+}
+
+.image-background {
+  position: relative;
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  max-width: 75%;
+  height: 300px;
+}
+
+.image-overlay {
+  position: absolute;
+  z-index: 2; /* オーバーレイを背景の上に表示する */
+  top: 60%;
+  background-color: rgba(140, 140, 140, 0.7); /* オーバーレイの背景色 */
+}
+
+p.image-overlay {
+  position: absolute; /* テキストをオーバーレイの中で相対的に配置する */
+  z-index: 3; /* テキストをオーバーレイの上に表示する */
+  font-family: 'Ysabeau SC', sans-serif;
+  font-size: 15px;
+  color: white;
+  padding-left: 5px;
+}

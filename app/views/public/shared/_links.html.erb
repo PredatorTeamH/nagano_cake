@@ -1,7 +1,15 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
-<% end %>
+<div class="row">
+  <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-right">
+    <%- if controller_name != 'sessions' %>
+      <%= link_to "こちら", new_session_path(resource_name) %><a>　からログインしてください。</a>
+    <% end %>
+  </div>
+</div>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
+<div class="row">
+  <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-right">
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to "こちら", new_registration_path(resource_name) %><a>　から新規登録を行ってください。</a>
+    <% end %>
+  </div>
+</div>

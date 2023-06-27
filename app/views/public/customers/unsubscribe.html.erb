@@ -1,0 +1,19 @@
+<div class='d-flex justify-content-center align-items-center vh-100'>
+  <div class="text-center">
+    <h2 class="px-4 mt-4 ml-4"><strong>本当に退会しますか?</strong></h2>
+      <h3 class="mb-4">
+        退会すると、会員登録情報や<br>
+        これまでの購入履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。<br>
+      </h3>
+    <table class='table table-borderless px-4 mt-4 ml-4'>
+      <tbody>
+      <tr>
+        <td><%= link_to '退会しない', customer_path, class: "btn btn-primary mb-3" %></td>
+        <td><%= link_to '退会する', customer_withdraw_path, method: :patch, class: "btn btn-danger"  %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

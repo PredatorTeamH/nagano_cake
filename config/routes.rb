@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
+
 scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
@@ -17,13 +17,13 @@ scope module: :public do
     patch  'customers/information' => 'customers#update', as: 'update_customer'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'customer_withdraw'
-    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
-    resources :orders, only: [:new, :index, :create, :show]
-    post 'orders' => 'orders#confirm', as: 'orders_confirm'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    post 'orders/confirm' => 'orders#confirm', as: 'orders_confirm'
     get 'orders/complete' => 'orders#complete', as: 'orders_complete'
+    resources :orders, only: [:new, :index, :create, :show]
     resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
-    
+
   end
 
   namespace :admin do
